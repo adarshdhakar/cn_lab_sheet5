@@ -8,7 +8,7 @@ using namespace std;
 #define f(n) for (int i = 0; i < (n); i++)
 
 const int N = 256;
-const int TIMEOUT_DURATION = 30; 
+const int TIMEOUT_DURATION = 120; 
 
 void error(const char *msg) {
     perror(msg);
@@ -18,6 +18,8 @@ void error(const char *msg) {
 atomic<int> client_index(-1);
 vector<double> timeout(256);
 set<int> active_clients;
+map<string, int> nameToSockfd;
+
 pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 struct ClientData {
@@ -70,6 +72,8 @@ void *Clients(void *arg) {
     }
 
     string name(buffer);
+    nameToSockfd[name] = newsockfd;
+
     string message = "\n" + name + " joined the chat.\n";
     message += "\nActive Clients: " + to_string(active_clients.size()) + "\n";
     cout << message << endl;
@@ -106,24 +110,37 @@ void *Clients(void *arg) {
         }
 
         string msg(buffer);
-        if (msg == "exit") 
+
+        int hashInd = msg.find("#");
+        string newReciever = msg.substr(0, hashInd);
+        string newMessage = msg.substr(hashInd+1);
+
+        if (newMessage == "exit") 
         {
-            msg = "\n" + name + " left the chat.\n";
-            msg += "\nActive Clients: " + to_string(active_clients.size()-1) + "\n";
+            newMessage = "\n" + name + " left the chat.\n";
+            newMessage += "\nActive Clients: " + to_string(active_clients.size()-1) + "\n";
             pthread_mutex_lock(&clients_mutex);
             active_clients.erase(newsockfd);
             pthread_mutex_unlock(&clients_mutex);
         }
 
-        msg = "\n" + name + ": " + msg + "\n";
-        cout << msg << endl;
+        newMessage = "\n" + name + ": " + newMessage + "\n";
+        cout << newMessage << endl;
 
         pthread_mutex_lock(&clients_mutex);
-        for (int sockfd : active_clients) {
-            if (sockfd != newsockfd) {
-                write(sockfd, msg.c_str(), msg.size());
+
+        if(newReciever == "All"){
+            for (int sockfd : active_clients) {
+                if (sockfd != newsockfd) {
+                    write(sockfd, newMessage.c_str(), newMessage.size());
+                }
             }
         }
+        else {
+            int sockfd = nameToSockfd[newReciever];
+            write(sockfd, newMessage.c_str(), newMessage.size());
+        }
+        
         pthread_mutex_unlock(&clients_mutex);
 
         now = chrono::high_resolution_clock::now();

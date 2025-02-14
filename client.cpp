@@ -15,9 +15,16 @@ int sockfd;
 
 void *Write(void *useless){
     while(true){
-        cout<<"You: ";
-        string msg;
-        getline(cin,msg); cout<<endl;
+        cout<<"Enter Reciever's Name: ";
+        string reciever;
+        getline(cin, reciever);cout<<endl;
+
+        cout<<"Message to be sent: ";
+        string mess;
+        getline(cin,mess); cout<<endl;
+
+        string msg = reciever + "#" + mess;
+
         int len=msg.size();
         char message[len];
         f(len) message[i]=msg[i];
