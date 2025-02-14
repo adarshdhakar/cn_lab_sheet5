@@ -15,11 +15,11 @@ int sockfd;
 
 void *Write(void *useless){
     while(true){
-        cout<<"Enter Reciever's Name: ";
+        // cout<<"Enter Reciever's Name: ";
         string reciever;
         getline(cin, reciever);cout<<endl;
 
-        cout<<"Message to be sent: ";
+        // cout<<"Message to be sent: ";
         string mess;
         getline(cin,mess); cout<<endl;
 
@@ -30,8 +30,9 @@ void *Write(void *useless){
         f(len) message[i]=msg[i];
         ssize_t n = write(sockfd,message,len);
         if(n < 0) error("ERROR writing to socket");
-        bool exit_=(msg=="exit");
-        if(exit_){
+        bool exit_=(mess=="exit");
+        if(exit_)
+        {
             cout<<"Bye!!"<<endl; cout<<endl;
             exit(0);
         }

@@ -3,3 +3,4 @@
 server_threaded
 client
 a.out
+*.out
