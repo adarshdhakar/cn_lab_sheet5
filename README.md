@@ -13,7 +13,7 @@
 - [Submission](#submission)
 
 ## Introduction
-This project implements a multi-client chat server using C/C++ and TCP sockets. The server is designed to handle multiple clients simultaneously using threads and the select() system call.
+This project implements a multi-client chat server using C/C++ and TCP sockets. The server is designed to handle multiple clients simultaneously using threads and the `select()` system call.
 
 ## Group Details
 
