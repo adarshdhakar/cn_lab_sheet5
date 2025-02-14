@@ -11,9 +11,34 @@ void error(char *msg){
     exit(1);
 }
 
+int index = -1;
+
+struct data{
+    int idx;
+    int socket_fd;
+};
+
+vector<double> timeout(256);
+
 set<int> active_clients;
 
+void *timeoutCheck(void *usefull){
+    struct data temp = *(struct data*)usefull;
+
+    auto now = chrono::high_resolution_clock::now();
+    double t2 = chrono::duration<double>(now.time_since_epoch()).count();
+    
+    cout << t2-timeout[temp.idx] << endl;
+    while(1){
+        if(t2-timeout[temp.idx] >= 6000){
+            active_clients.erase(temp.socket_fd); cout<<endl;
+            pthread_exit(NULL);
+        }
+    }
+}
+
 void *Clients(void *ns){
+    index++;
     int newsockfd = *(int *)ns;
     active_clients.insert(newsockfd);
     char buffer[N];
@@ -37,6 +62,16 @@ void *Clients(void *ns){
             if (n < 0) error("ERROR writing to socket");
         }
     }
+
+    auto now = chrono::high_resolution_clock::now();
+    timeout[index] = chrono::duration<double>(now.time_since_epoch()).count();
+
+    struct data *x = (struct data*)malloc(sizeof(struct data));
+    x->idx = index;
+    x->socket_fd = newsockfd;
+
+    pthread_t timeCheck;
+    pthread_create(&timeCheck, NULL, timeoutCheck, &x);
 
     while(true){
         bzero(buffer,N);
@@ -69,6 +104,8 @@ void *Clients(void *ns){
             active_clients.erase(newsockfd); cout<<endl;
             pthread_exit(NULL);
         }
+        auto now = chrono::high_resolution_clock::now();
+        timeout[index] = chrono::duration<double>(now.time_since_epoch()).count();
     }
 }
 
