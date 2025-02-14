@@ -26,9 +26,10 @@ This project implements a multi-client chat server using C++ and TCP sockets, wi
 
 ## Required Links
 - [Github Repository](https://github.com/adarshdhakar/cn_lab_sheet5)
+- [Images Folder](images/)
+- [Demo Video](Demo.mp4)
 - [Download Zip File](CN_LAB_SHEET5.zip)
 - [Report](Report.pdf)
-- [Images Folder](images/)
 
 ## File Structure
 - `server_threaded.cpp` - Multi-client chat server using threads.
@@ -36,7 +37,8 @@ This project implements a multi-client chat server using C++ and TCP sockets, wi
 - `client.cpp` - Chat client program.
 - `README.md` - This file, containing details of the project.
 - `images/` - Screenshots of the running server and clients on separate hosts.
-- `report.pdf` - Contains group details, explanations, and additional functionalities.
+- `Report.pdf` - Contains group details, explanations, and additional functionalities.
+- `Demo.mp4` - Demo Video of the working of multi-client chat server.
 
 ## Compilation & Execution
 The below procedure can be followed after:
