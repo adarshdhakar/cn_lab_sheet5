@@ -120,7 +120,8 @@ or
 </table>
 
 ## Submission
-- All codes are included in a zip file.
+- All codes are included in a zip file and the directory too.
 - Report with explanations and images is attached.
-- Github link for the same is provided.
+- Demo Video link is provided in the repository.
+- Github link for the repository, report and the demo video.
 
