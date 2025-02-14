@@ -2,30 +2,33 @@
 
 ## Table of Contents
 
+- [Introduction](#introduction)
 - [Group Details](#group-details)
 - [Required Links](#required-links)
 - [File Structure](#file-structure)
 - [Compilation & Execution](#compilation--execution)
 - [Features](#features)
-- [Additional Functionality](#additional-features)
+- [Additional Features](#additional-features)
 - [Images](#images)
 - [Submission](#submission)
 
+## Introduction
+This project implements a multi-client chat server using C/C++ and TCP sockets. The server is designed to handle multiple clients simultaneously using threads and the select() system call.
+
 ## Group Details
-- **Name:** [Adarsh Dhakar]  
-  **Roll No:** [22CS01040]  
-- **Name:** [Avik Sarkar]  
-  **Roll No:** [22CS01060]  
-- **Name:** [Debargha Nath]  
-  **Roll No:** [22CS01070]  
-- **Name:** [Soham Chakraborty]  
-  **Roll No:** [22CS02002] 
+
+| Name              | Roll No      |
+|------------------|-------------|
+| Adarsh Dhakar    | 22CS01040    |
+| Avik Sarkar      | 22CS01060    |
+| Debargha Nath    | 22CS01070    |
+| Soham Chakraborty| 22CS02002    |
 
 ## Required Links
-- Github Link -> https://github.com/adarshdhakar/cn_lab_sheet5
-- Zip File -> CN_LAB_SHEET5.zip
-- Report Link -> /Report.pdf
-- Images Folder -> /images
+- [Github Repository](https://github.com/adarshdhakar/cn_lab_sheet5)
+- [Download Zip File](CN_LAB_SHEET5.zip)
+- [Report](Report.pdf)
+- [Images Folder](images/)
 
 ## File Structure
 - `server_threaded.cpp` - Multi-client chat server using threads.
@@ -36,10 +39,14 @@
 - `report.pdf` - Contains group details, explanations, and additional functionalities.
 
 ## Compilation & Execution
-The below procedure can either be followed after:
-- cloning the repository or 
-- downloading and extracting the zip 
-- or just downloading the server and client files.
+The below procedure can be followed after:
+- Cloning the repository: 
+  ```bash
+  git clone https://github.com/adarshdhakar/cn_lab_sheet5 
+  cd cn_lab_sheet5
+  ```
+- Downloading and extracting the zip file.
+- Or just downloading the server and client files.
 
 ### Compiling the Server and Client
 ```bash
@@ -81,32 +88,32 @@ or
 - **Server**  
 <table>
     <tr>
-    <td><img src="images/1.png" alt="Banner" width="500"></td>
-    <td><img src="images/2.png" alt="Sample Image 2" width="500"></td>
+    <td><img src="images/1.png" alt="Image 1" width="500"></td>
+    <td><img src="images/2.png" alt="Image 2" width="500"></td>
     </tr>
 </table>
 
 - **Client1**  
 <table>
     <tr>
-    <td><img src="images/3.png" alt="Banner" width="500"></td>
-    <td><img src="images/4.png" alt="Sample Image 2" width="500"></td>
+    <td><img src="images/3.png" alt="Image 3" width="500"></td>
+    <td><img src="images/4.png" alt="Image 4" width="500"></td>
     </tr>
 </table>
 
 - **Client2**  
 <table>
     <tr>
-    <td><img src="images/1.png" alt="Banner" width="500"></td>
-    <td><img src="docs/images/2.png" alt="Sample Image 2" width="500"></td>
+    <td><img src="images/5.png" alt="Image 5" width="500"></td>
+    <td><img src="images/6.png" alt="Image 6" width="500"></td>
     </tr>
 </table>
 
 - **Client3** 
 <table>
     <tr>
-    <td><img src="images/1.png" alt="Banner" width="500"></td>
-    <td><img src="images/2.png" alt="Sample Image 2" width="500"></td>
+    <td><img src="images/7.png" alt="Image 7" width="500"></td>
+    <td><img src="images/8.png" alt="Image 8" width="500"></td>
     </tr>
 </table>
 
