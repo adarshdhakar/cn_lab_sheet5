@@ -8,7 +8,7 @@ using namespace std;
 #define f(n) for (int i = 0; i < (n); i++)
 
 const int N = 256;
-const int TIMEOUT_DURATION = 6; 
+const int TIMEOUT_DURATION = 30; 
 
 void error(const char *msg) {
     perror(msg);
@@ -23,6 +23,7 @@ pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 struct ClientData {
     int idx;
     int socket_fd;
+    string name;
 };
 
 void *timeoutCheck(void *arg) {
@@ -40,7 +41,7 @@ void *timeoutCheck(void *arg) {
             if (active_clients.find(client_data.socket_fd) != active_clients.end()) 
             {
                 active_clients.erase(client_data.socket_fd);
-                cout << "Client " << client_data.socket_fd << " timed out.\n";
+                cout << "Client " << client_data.name << " timed out.\n";
                 shutdown(client_data.socket_fd, SHUT_RDWR);
                 close(client_data.socket_fd);
             }
@@ -89,7 +90,7 @@ void *Clients(void *arg) {
     ClientData *client_data = (ClientData *)malloc(sizeof(ClientData));
     client_data->idx = idx;
     client_data->socket_fd = newsockfd;
-
+    client_data->name = name;
     pthread_t timeCheck;
     pthread_create(&timeCheck, NULL, timeoutCheck, client_data);
     pthread_detach(timeCheck);
@@ -105,11 +106,13 @@ void *Clients(void *arg) {
         }
 
         string msg(buffer);
-        if (msg == "exit") {
+        if (msg == "exit") 
+        {
+            msg = "\n" + name + " left the chat.\n";
+            msg += "\nActive Clients: " + to_string(active_clients.size()-1) + "\n";
             pthread_mutex_lock(&clients_mutex);
             active_clients.erase(newsockfd);
             pthread_mutex_unlock(&clients_mutex);
-            break;
         }
 
         msg = "\n" + name + ": " + msg + "\n";
