@@ -5,7 +5,7 @@ using namespace std;
 #define pb push_back
 #define f(n) for(int i=0;i<(n);i++)
 
-void error(char *msg){
+void error(const char *msg){
     perror(msg);
     exit(0);
 }
@@ -13,27 +13,21 @@ void error(char *msg){
 const int N = 256;
 int sockfd;
 
+bool exit_=false,print_=false;;
 void *Write(void *useless){
     while(true){
-        // cout<<"Enter Reciever's Name: ";
-        string reciever;
-        getline(cin, reciever);cout<<endl;
-
-        // cout<<"Message to be sent: ";
-        string mess;
-        getline(cin,mess); cout<<endl;
-
-        string msg = reciever + "#" + mess;
-
-        int len=msg.size();
-        char message[len];
-        f(len) message[i]=msg[i];
-        ssize_t n = write(sockfd,message,len);
+        // Changes below
+        cout<<"You: ";
+        string msg;
+        getline(cin,msg); cout<<endl;
+        ssize_t n = write(sockfd,msg.c_str(),msg.size()); 
         if(n < 0) error("ERROR writing to socket");
-        bool exit_=(mess=="exit");
-        if(exit_)
-        {
-            cout<<"Bye!!"<<endl; cout<<endl;
+        exit_=(msg=="exit");
+        if(exit_){
+            if(!print_){
+                print_=true;
+                cout<<"Bye!!"<<endl; cout<<endl;
+            }
             exit(0);
         }
     }
@@ -41,13 +35,22 @@ void *Write(void *useless){
 void *Read(void *useless) {
     char buffer[N];
     while(true){
+        if(exit_){
+            if(!print_){
+                print_=true;
+                cout<<"Bye!!"<<endl; cout<<endl;
+            }
+            exit(0);
+        }
         bzero(buffer,N);
         ssize_t n = read(sockfd,buffer,N-1);
         if(n < 0) error("ERROR reading from socket");
         int len = strlen(buffer);
-        string msg;
-        f(len) msg.pb(buffer[i]);
-        cout<<endl; cout<< msg << endl; cout<<endl;
+        string msg = buffer;
+        cout<<endl; cout<<endl; cout<< msg; fflush(stdout);
+        // CHanges below
+        if(msg == "You has been banned from the server.  [Reason: Time Out]")
+            exit(0);
     }
 }
 
@@ -73,9 +76,24 @@ int main(int argc, char *argv[]){
 
     if(connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr))<0) error("ERROR connecting");
     
+    // Changes below
+    cout << "+----------------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                                  |" << endl;
+    cout << "| How to send a message?                                                           |" << endl;
+    cout << "| 1. By default the message will be sent to 'All' users.                           |" << endl;
+    cout << "| 2. $[NAME] MESSAGE            -> To send the message to a particular user        |" << endl;
+    cout << "| 3. $[NAME1,NAME2,...] MESSAGE -> To send message to a particular set of users    |" << endl;
+    cout << "| 4. /rooms                     -> To list all the rooms with the users in them    |" << endl;
+    cout << "| 5. /join ROOM_NAME            -> To join an existing room or to create a room    |" << endl;
+    cout << "| 6. /leave                     -> To leave the joined room                        |" << endl;
+    cout << "|                                                                                  |" << endl;
+    cout << "+----------------------------------------------------------------------------------+" << endl;
+
     string name;
-    cout<<"Enter your name: ";
-    getline(cin,name); cout<<endl;
+    cout << "+----------------------------------------------------------------------------------+" << endl;
+    cout<<  "|  Enter your name: ";
+    getline(cin,name);
+    cout << "+----------------------------------------------------------------------------------+" << endl;
     int name_len=name.size();
     char nm[name_len];
     f(name_len) nm[i]=name[i];
