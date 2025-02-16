@@ -2,6 +2,7 @@
 using namespace std;
 #include <netinet/in.h>
 #include <netdb.h>
+
 #define pb push_back
 #define f(n) for(int i=0;i<(n);i++)
 
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]){
     cout << "+----------------------------------------------------------------------------------+" << endl;
     cout<<  "|  Enter your name: ";
     getline(cin,name);
-    cout << "+----------------------------------------------------------------------------------+" << endl;
+    // cout << "+----------------------------------------------------------------------------------+" << endl;
     int name_len=name.size();
     char nm[name_len];
     f(name_len) nm[i]=name[i];

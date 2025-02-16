@@ -13,7 +13,7 @@
 - [Submission](#submission)
 
 ## Introduction
-This project implements a multi-client chat server using C++ and TCP sockets, with the C code provided as reference. The server is designed to handle multiple clients simultaneously using threads and the `select()` system call.
+This project implements a multi-client chat server using C++ and TCP sockets, with the C code provided as reference. The server is designed to handle multiple clients simultaneously using `threads` and the `select()` system call.
 
 ## Group Details
 
@@ -28,7 +28,7 @@ This project implements a multi-client chat server using C++ and TCP sockets, wi
 - [Github Repository](https://github.com/adarshdhakar/cn_lab_sheet5)
 - [Images Folder](images/)
 - [Demo Video](Demo.mp4)
-- [Download Zip File](CN_LAB_SHEET5.zip)
+<!-- - [Download Zip File](CN_LAB_SHEET5.zip) -->
 - [Report](Report.pdf)
 
 ## File Structure
@@ -78,44 +78,61 @@ or
 
 ## Features
 - Multiple clients can connect to the server simultaneously.
-- Clients can send private messages to each other via the server.
 - Clients can broadcast messages to all connected clients.
+- Clients can send private messages to each other via the server.
 - Clients can join or disconnect from the chat without affecting others.
-- Server handles client timeout and disconnections.
 
 ## Additional Features
-- Timeout feature to detect inactive clients.
+- Clients can send private messages to a group of people.
+- Clients can join an existing room, or create a room.
+- Clients can send messages to people in that room or leave out of that room.
+- Server handles client timeout and disconnections.
 
 ## Images
-- **Server**  
+- **Broadcast Messages**  
 <table>
     <tr>
     <td><img src="images/1.png" alt="Image 1" width="500"></td>
     <td><img src="images/2.png" alt="Image 2" width="500"></td>
     </tr>
 </table>
-
-- **Client1**  
 <table>
     <tr>
-    <td><img src="images/3.png" alt="Image 3" width="500"></td>
-    <td><img src="images/4.png" alt="Image 4" width="500"></td>
+    <td><img src="images/3.png" alt="Image 1" width="500"></td>
     </tr>
 </table>
 
-- **Client2**  
+- **Private and Direct Messaging**  
 <table>
     <tr>
-    <td><img src="images/5.png" alt="Image 5" width="500"></td>
-    <td><img src="images/6.png" alt="Image 6" width="500"></td>
+    <td><img src="images/4.png" alt="Image 3" width="500"></td>
+    <td><img src="images/5.png" alt="Image 4" width="500"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+    <td><img src="images/6.png" alt="Image 3" width="500"></td>
     </tr>
 </table>
 
-- **Client3** 
+- **Join a room, message, leave a room**  
 <table>
     <tr>
-    <td><img src="images/7.png" alt="Image 7" width="500"></td>
-    <td><img src="images/8.png" alt="Image 8" width="500"></td>
+    <td><img src="images/7.png" alt="Image 5" width="500"></td>
+    <td><img src="images/8.png" alt="Image 6" width="500"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+    <td><img src="images/11.png" alt="Image 5" width="500"></td>
+    </tr>
+</table>
+
+- **Exit, Timeout** 
+<table>
+    <tr>
+    <td><img src="images/9.png" alt="Image 7" width="500"></td>
+    <td><img src="images/10.png" alt="Image 8" width="500"></td>
     </tr>
 </table>
 
