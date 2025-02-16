@@ -8,7 +8,7 @@ using namespace std;
 #define f(n) for (int i = 0; i < (n); i++)
 
 const int N = 256;
-const int BAN_TIME = 60;
+const int BAN_TIME = 120;
 const int BAN_LEN = 56; 
 const string ban_msg = "You has been banned from the server.  [Reason: Time Out]";
 

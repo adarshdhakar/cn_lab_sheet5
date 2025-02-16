@@ -86,6 +86,7 @@ int main(int argc, char *argv[]){
     cout << "| 4. /rooms                     -> To list all the rooms with the users in them    |" << endl;
     cout << "| 5. /join ROOM_NAME            -> To join an existing room or to create a room    |" << endl;
     cout << "| 6. /leave                     -> To leave the joined room                        |" << endl;
+    cout << "| 7. exit                       -> To exit the chat                                |" << endl;
     cout << "|                                                                                  |" << endl;
     cout << "+----------------------------------------------------------------------------------+" << endl;
 
