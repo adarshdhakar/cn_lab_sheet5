@@ -82,6 +82,7 @@ or
     <td><img src="images/12.png" alt="Image 1"></td>
     </tr>
 </table>
+
 - Multiple clients can connect to the server simultaneously.
 - Clients can broadcast messages to all connected clients.
 - Clients can send private messages to each other via the server.
