@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Group Details](#group-details)
 - [Required Links](#required-links)
 - [File Structure](#file-structure)
 - [Compilation & Execution](#compilation--execution)
@@ -14,6 +15,14 @@
 ## Introduction
 This project implements a multi-client chat server using C++ and TCP sockets, with the C code provided as reference. The server is designed to handle multiple clients simultaneously using `threads` and the `select()` system call.
 
+## Group Details
+
+| Name              | Roll No      |
+|------------------|-------------|
+| Adarsh Dhakar    | 22CS01040    |
+| Avik Sarkar      | 22CS01060    |
+| Debargha Nath    | 22CS01070    |
+| Soham Chakraborty| 22CS02002    |
 
 ## Required Links
 - [Github Repository](https://github.com/adarshdhakar/cn_lab_sheet5)
@@ -35,7 +44,7 @@ This project implements a multi-client chat server using C++ and TCP sockets, wi
 The below procedure can be followed after:
 - Cloning the repository: 
   ```bash
-  git clone https://github.com/wanderer1500/ChatApp_Socket
+  git clone https://github.com/adarshdhakar/cn_lab_sheet5 
   cd cn_lab_sheet5
   ```
 - Downloading and extracting the zip file.
@@ -136,5 +145,6 @@ or
 ## Submission
 - All codes are included in a zip file and the directory too.
 - Report with explanations and images is attached.
+- Demo Video link is provided in the repository.
 - Github link for the repository, report and the demo video.
 
